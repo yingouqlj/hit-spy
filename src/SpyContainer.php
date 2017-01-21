@@ -9,7 +9,9 @@
 namespace Yingou\HitSpy;
 
 
-class Container extends \Pimple\Container
+use Pimple\Container;
+
+class SpyContainer extends Container
 {
 
 }

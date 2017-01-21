@@ -19,6 +19,7 @@ class Spy
         if (self::$instance) {
             throw new \Exception('cannot construct twice');
         }
+        $this->container=new SpyContainer([]);
         self::$instance = $this;
     }
 

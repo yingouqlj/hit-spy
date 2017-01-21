@@ -9,7 +9,7 @@
 namespace Yingou\HitSpy;
 
 
-class Server
+class Spy
 {
     protected static $instance;
     protected $container;
@@ -22,9 +22,6 @@ class Server
         self::$instance = $this;
     }
 
-    public function run()
-    {
-    }
     public static function app()
     {
         return self::$instance;

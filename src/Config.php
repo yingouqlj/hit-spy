@@ -11,7 +11,7 @@ namespace Yingou\HitSpy;
 
 class Config
 {
-    public $analyticsTrackingId = 'UA-90537964-2'; //google analytics tid
+    public $analyticsTrackingId = ''; //google analytics tid
 
 
 }

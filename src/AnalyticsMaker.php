@@ -9,7 +9,9 @@
 namespace Yingou\HitSpy;
 
 
-class AnalyticsMaker
+use TheIconic\Tracking\GoogleAnalytics\Analytics;
+
+class AnalyticsMaker extends Analytics
 {
 
 }

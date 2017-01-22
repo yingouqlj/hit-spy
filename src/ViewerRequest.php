@@ -9,8 +9,6 @@
 namespace Yingou\HitSpy;
 
 
-use Psr\Http\Message\ServerRequestInterface;
-use Symfony\Bridge\PsrHttpMessage\Factory\HttpFoundationFactory;
 use Symfony\Component\HttpFoundation\Request;
 
 class ViewerRequest extends Request
@@ -18,9 +16,13 @@ class ViewerRequest extends Request
 
     public function getUserAgent()
     {
-        return $this->headers->get('user-agent');
+        return $this->headers->get('User-Agent');
     }
 
+    public function getReferer()
+    {
+        return $this->headers->get('Referer');
+    }
 
 
 }

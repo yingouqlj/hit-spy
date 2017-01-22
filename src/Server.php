@@ -10,8 +10,6 @@ namespace Yingou\HitSpy;
 
 
 use GuzzleHttp\Client;
-use Symfony\Component\HttpFoundation\Request;
-use TheIconic\Tracking\GoogleAnalytics\Analytics;
 
 class Server
 {
@@ -25,7 +23,7 @@ class Server
     public function run()
     {
         $config=new Config();
-        $ana=new Analytics();
+        $ana = new AnalyticsMaker();
         $ana->setTrackingId($config->analyticsTrackingId);
         $ana->setProtocolVersion(1);
         $ana->setClientId(md5(microtime(true)));

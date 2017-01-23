@@ -9,6 +9,8 @@
 namespace Yingou\HitSpy;
 
 
+use Yingou\HitSpy\Config\Config;
+
 class Spy
 {
     protected static $instance;
@@ -19,7 +21,6 @@ class Spy
         if (self::$instance) {
             throw new \Exception('cannot construct twice');
         }
-        $this->container=new SpyContainer([]);
         self::$instance = $this;
     }
 
@@ -27,4 +28,18 @@ class Spy
     {
         return self::$instance;
     }
+
+    public function makeAnalyticsUrl(Config $config)
+    {
+        $ana = new AnalyticsMaker();
+        $ana->setTrackingId($config->analyticsTrackingId);
+        $ana->setProtocolVersion(1);
+        $ana->setClientId($config->getClientId());
+        $ana->setUserAgentOverride($config->getUserAgent());
+        $ana->setIpOverride($config->getIp());
+        $ana->setDocumentPath($config->request->getRequestUri());
+        if(!empty($config->getReferer())) $ana->setDocumentReferrer($config->getReferer());
+        return $ana->sendPageview()->getRequestUrl();
+    }
+
 }

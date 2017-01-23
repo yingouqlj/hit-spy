@@ -10,29 +10,46 @@ namespace Yingou\HitSpy;
 
 
 use GuzzleHttp\Client;
+use Yingou\HitSpy\Config\Config;
 
 class Server
 {
     public $request;
+    public $uri;
+    protected $config;
 
     public function __construct()
     {
         $this->request = ViewerRequest::createFromGlobals();
+        $this->uri = $this->request->getRequestUri();
     }
 
     public function run()
     {
-        $config=new Config();
-        $ana = new AnalyticsMaker();
-        $ana->setTrackingId($config->analyticsTrackingId);
-        $ana->setProtocolVersion(1);
-        $ana->setClientId(md5(microtime(true)));
-        $ana->setUserAgentOverride($this->request->headers->get('user-agent'));
-        $ana->setDocumentPath('/mypage');
-        $url=$ana->sendPageview()->getRequestUrl();
-$http=new Client();
-$res=$http->request('GET',$url);
-var_dump([$url,$res,$this->request]);
+       $this->getConfig();
+       $spy=new Spy();
+       $spy->makeAnalyticsUrl($this->getConfig());
+       return $this->getConfig()->response();
     }
 
+    /**
+     * @return Config
+     * @throws \Exception
+     */
+    public function getConfig()
+    {
+        if (isset($this->config)) {
+            return $this->config;
+        }
+        $path = explode('/', $this->uri);
+        if (isset($path[0])) {
+            $configName = '\Yingou\HitSpy\Config\\' . ucfirst(strtolower($path[1])) . 'Config';
+            if (new $configName instanceof Config) {
+                $this->config = new $configName();
+                $this->config->request = $this->request;
+                return $this->config;
+            }
+        }
+        throw new \Exception('no config');
+    }
 }

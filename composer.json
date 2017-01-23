@@ -10,7 +10,6 @@
   ],
   "require": {
     "php":">=5.5.0",
-    "pimple/pimple": "^3.0",
     "guzzlehttp/guzzle": "~6.2",
     "symfony/http-foundation": "^3.2",
     "theiconic/php-ga-measurement-protocol": "^2.4"

@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "37aa8c063245abcced1cc119cd3c964f",
     "content-hash": "e3e911b9ea6a9c7cfffb64bdcc1a108e",
     "packages": [
         {
@@ -432,7 +431,7 @@
                 }
             ],
             "description": "Send data to Google Analytics from the server using PHP. This library fully implements GA measurement protocol.",
-            "time": "2017-01-18 23:24:46"
+            "time": "2017-01-18T23:24:46+00:00"
         }
     ],
     "packages-dev": [],

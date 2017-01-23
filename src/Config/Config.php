@@ -53,6 +53,7 @@ class Config
         $imageString = ob_get_clean();
         $res = new Response($imageString, 200);
         imagedestroy($image);
+        $res->headers->set('content-type','image/png');
         return $res;
     }
 }

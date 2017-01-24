@@ -29,7 +29,7 @@ class Server
        $this->getConfig();
        $spy=new Spy();
        $spy->makeAnalyticsUrl($this->getConfig());
-       return $this->getConfig()->response();
+       return $this->getConfig()->response()->send();
     }
 
     /**

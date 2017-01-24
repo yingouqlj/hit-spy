@@ -8,5 +8,6 @@
 use Yingou\HitSpy\Server;
 
 require '../vendor/autoload.php';
+date_default_timezone_set("Asia/Shanghai");
 $server = new Server();
 $server->run();
